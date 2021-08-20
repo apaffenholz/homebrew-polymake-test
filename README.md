@@ -1,4 +1,4 @@
-# Apaffenholz Polymake-test
+# apaffenholz Polymake-test
 
 ## How do I install these formulae?
 
