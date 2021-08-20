@@ -630,6 +630,7 @@ class Polymake < Formula
   end
 
   test do
+    assert_match "4 6 4", shell_output("#{bin}/polymake 'print simplex(3)->F_VECTOR'")
     assert_match "1 23 23 1", shell_output("#{bin}/polymake 'print cube(3)->H_STAR_VECTOR'")
     command = "LIBRARY_PATH=/usr/local/lib #{bin}/polymake 'my $a=new Array<SparseMatrix<Float>>' 2>&1"
     assert_match "", shell_output(command)
