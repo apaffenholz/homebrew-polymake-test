@@ -4,18 +4,11 @@ class Polymake < Formula
   url "https://polymake.org/lib/exe/fetch.php/download/polymake-4.4.tar.bz2"
   sha256 "f4e9a3fe101bc8735c1531389bc2e7e364381ebdea22ee93c5a4e836ac6f6961"
 
-  bottle do
-    root_url "https://github.com/apaffenholz/homebrew-polymake-test/releases/download/polymake-4.4"
-    rebuild 1
-    sha256 catalina: "1132b38172bdc3363fe71794fde150b9671906aaa693f52e598bf5b3573ba16c"
-  end
-
   depends_on "boost"
   depends_on "flint"
   depends_on "gmp"
   depends_on "mpfr"
   depends_on "ninja"
-  depends_on "perl" if MacOS.version == :big_sur || MacOS.version == :catalina
   depends_on "ppl"
   depends_on "readline"
 
@@ -557,10 +550,12 @@ class Polymake < Formula
   resource "Term::ReadLine::Gnu" do
     url "https://cpan.metacpan.org/authors/id/H/HA/HAYASHI/Term-ReadLine-Gnu-1.37.tar.gz"
     sha256 "3bd31a998a9c14748ee553aed3e6b888ec47ff57c07fc5beafb04a38a72f0078"
-    if MacOS.version == :big_sur
-      patch do
-        url "https://gist.githubusercontent.com/apaffenholz/9db9fd984d2608f235a73b37a3a09301/raw/99fd09a404ca6d7ed9e24b55d495703dcf3356cd/polymake-homebrew-term-readline-gnu.patch"
-        sha256 "0c6b0e266b06aa817df84c7087c6becd97f1335de4957c968a857d868eb79e27"
+    on_macos do
+      if MacOS.version == :big_sur
+        patch do
+          url "https://gist.githubusercontent.com/apaffenholz/9db9fd984d2608f235a73b37a3a09301/raw/99fd09a404ca6d7ed9e24b55d495703dcf3356cd/polymake-homebrew-term-readline-gnu.patch"
+          sha256 "0c6b0e266b06aa817df84c7087c6becd97f1335de4957c968a857d868eb79e27"
+        end
       end
     end
   end
@@ -578,11 +573,6 @@ class Polymake < Formula
       r.stage do
         # Prevent the Makefile to try and build universal binaries
         ENV.refurbish_args
-        if MacOS.version == :catalina || MacOS.version == :mojave
-          system_perl_subpath = "/System/Library/Perl/5.18/darwin-thread-multi-2level/CORE/"
-          perl_cpath = "#{MacOS.sdk_path}#{system_perl_subpath}"
-          ENV.prepend_create_path "CPATH", perl_cpath.to_str
-        end
         case r.name
         when "IO::Socket::IP"
           system "perl", "Build.PL", "--install_base", libexec
