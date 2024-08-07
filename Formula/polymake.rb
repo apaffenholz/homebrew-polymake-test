@@ -311,7 +311,7 @@ class Polymake < Formula
 
       If you had any other version of polymake installed on your Mac
       (both previous versions installed via Homebrew or any other installations)
-      you should start polymake once with
+      you must start polymake once with
       "polymake --reconfigure"
       to adjust your local ocnfiguration to the new version.
       Afterwards you can use "polymake" to start polymake in a terminal as before.
