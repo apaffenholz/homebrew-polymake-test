@@ -621,7 +621,7 @@ class Polymake < Formula
       you should start polymake once with
       "polymake --reconfigure"
       to adjust your local ocnfiguration to the new version.
-      Afterwards you can use "polymake" as usual.
+      Afterwards you can use "polymake" to start polymake in a terminal as usual.
     EOS
   end
 
