@@ -4,6 +4,11 @@ class Polymake < Formula
   url "https://polymake.org/lib/exe/fetch.php/download/polymake-4.12.tar.bz2"
   sha256 "18df427e5c165a5b52c72e328de371eab3786626a7ecb2e6049a3de59217f3f8"
 
+  bottle do
+    root_url "https://github.com/apaffenholz/homebrew-polymake-test/releases/download/polymake-4.12"
+    sha256 cellar: :any, arm64_sonoma: "0fba8dddf83e2b007f9dfae7f70fe6b9ac3aa20341c5aad6698d1ee44cd71ce2"
+  end
+
   pour_bottle? only_if: :default_prefix
   pour_bottle? only_if: :clt_installed
 
