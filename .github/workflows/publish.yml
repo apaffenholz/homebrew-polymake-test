@@ -5,7 +5,7 @@ on:
       - labeled
 jobs:
   pr-pull-latest:
-    if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+    if: contains(github.event.pull_request.labels.*.name, 'pr-pull-latest')
     runs-on: macos-latest
     steps:
       - name: Set up Homebrew
@@ -32,7 +32,7 @@ jobs:
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: git push --delete origin "$BRANCH"
   pr-pull-12:
-    if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+    if: contains(github.event.pull_request.labels.*.name, 'pr-pull-12')
     runs-on: macos-12
     steps:
       - name: Set up Homebrew
@@ -59,7 +59,7 @@ jobs:
           BRANCH: ${{ github.event.pull_request.head.ref }}
         run: git push --delete origin "$BRANCH"
   pr-pull-13:
-    if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+    if: contains(github.event.pull_request.labels.*.name, 'pr-pull-13')
     runs-on: macos-13
     steps:
       - name: Set up Homebrew
